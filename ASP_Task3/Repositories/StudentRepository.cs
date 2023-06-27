@@ -40,9 +40,11 @@ namespace ASP_Task3.Repositories
                 FirstOrDefaultAsync(c => c.Id== id);
         }
 
-        public Task Update(Student student)
+        public  async Task Update(Student student)
         {
-            throw new System.NotImplementedException();
+            var data = _dbContext.Students.SingleOrDefault(c => c.Id == student.Id);
+            _dbContext.Entry(data).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

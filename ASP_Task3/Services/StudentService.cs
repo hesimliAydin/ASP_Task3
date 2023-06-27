@@ -1,6 +1,7 @@
 ﻿using ASP_Task3.Entities;
 using ASP_Task3.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ASP_Task3.Services
@@ -25,9 +26,11 @@ namespace ASP_Task3.Services
             throw new System.NotImplementedException();
         }
 
-        public Task<List<Student>> GetAllByKey(string key = "")
+        public async Task<List<Student>> GetAllByKey(string key = "")
         {
-            throw new System.NotImplementedException();
+            var data = await _studentRepository.GetAllAsync();
+            
+            return data.Where(s=>key==""|| s.FirstName.ToLower().Contains(key.Trim().ToLower())).ToList();
         }
 
         public Task<Student> GetByIdAsync(int id)

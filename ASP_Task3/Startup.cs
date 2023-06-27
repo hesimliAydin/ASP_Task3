@@ -1,4 +1,6 @@
 using ASP_Task3.Models;
+using ASP_Task3.Repositories;
+using ASP_Task3.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,8 @@ namespace ASP_Task3
 
             var conn = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=StudentDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddDbContext<StudentDbContext>(opt =>
             {
                 opt.UseSqlServer(conn);
