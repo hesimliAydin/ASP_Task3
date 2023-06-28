@@ -16,14 +16,14 @@ namespace ASP_Task3.Services
             _studentRepository = studentRepository;
         }
 
-        public Task Add(Student student)
+        public async Task Add(Student student)
         {
-            throw new System.NotImplementedException();
+            await _studentRepository.Add(student);
         }
 
-        public Task Delete(Student student)
+        public async Task Delete(Student student)
         {
-            throw new System.NotImplementedException();
+            await _studentRepository.Delete(student);
         }
 
         public async Task<List<Student>> GetAllByKey(string key = "")
@@ -33,14 +33,14 @@ namespace ASP_Task3.Services
             return data.Where(s=>key==""|| s.FirstName.ToLower().Contains(key.Trim().ToLower())).ToList();
         }
 
-        public Task<Student> GetByIdAsync(int id)
+        public async Task<Student> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _studentRepository.GetByIdAsync(id);
         }
 
-        public Task Update(Student student)
+        public async Task Update(Student student)
         {
-            throw new System.NotImplementedException();
+            await _studentRepository.Update(student);
         }
     }
 }
